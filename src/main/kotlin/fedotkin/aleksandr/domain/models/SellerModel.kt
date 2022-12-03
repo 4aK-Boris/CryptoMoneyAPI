@@ -1,0 +1,11 @@
+package fedotkin.aleksandr.domain.models
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class SellerModel(
+    val id: Int,
+    val title: String,
+    val imageUrl: String,
+    val amountOfMoney: Int
+)
