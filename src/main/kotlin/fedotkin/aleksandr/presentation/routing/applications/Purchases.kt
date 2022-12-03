@@ -1,7 +1,7 @@
 package fedotkin.aleksandr.presentation.routing.applications
 
-import fedotkin.aleksandr.data.dto.SellerProductDTO
-import fedotkin.aleksandr.domain.usecases.ProductUseCase
+import fedotkin.aleksandr.data.dto.SellerPurchaseDTO
+import fedotkin.aleksandr.domain.usecases.PurchaseUseCase
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -11,24 +11,19 @@ import io.ktor.server.routing.routing
 import io.ktor.util.reflect.TypeInfo
 import org.koin.ktor.ext.inject
 
-fun Application.configureProducts() {
+fun Application.configurePurchases() {
 
-    val productUseCase by inject<ProductUseCase>()
+    val purchasesUseCase by inject<PurchaseUseCase>()
 
     routing {
-
-        get("/products") {
-            call.respond(productUseCase.getProducts())
-        }
-
-        get("/sellerProducts") {
+        get("/sellerPurchases") {
             call.parameters["sellerId"]?.let { stringId ->
                 val sellerId = stringId.toInt()
-                call.respond(productUseCase.getSellerProducts(sellerId = sellerId))
+                call.respond(purchasesUseCase.getSellerPurchases(sellerId = sellerId))
             } ?: call.respond(
                 status = HttpStatusCode.BadRequest,
                 message = null,
-                messageType = TypeInfo(type = SellerProductDTO::class, reifiedType = SellerProductDTO::class.java)
+                messageType = TypeInfo(type = SellerPurchaseDTO::class, reifiedType = SellerPurchaseDTO::class.java)
             )
         }
     }

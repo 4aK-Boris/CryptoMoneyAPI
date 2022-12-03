@@ -1,8 +1,9 @@
-package fedotkin.aleksandr.domain.kstore
+package fedotkin.aleksandr.data.kstore
 
 import fedotkin.aleksandr.domain.models.BuyerModel
 import fedotkin.aleksandr.domain.models.KStoreModel
 import fedotkin.aleksandr.domain.models.ProductModel
+import fedotkin.aleksandr.domain.models.PurchaseModel
 import fedotkin.aleksandr.domain.models.SellerModel
 import fedotkin.aleksandr.presentation.exceptions.KStoreException
 import io.github.xxfast.kstore.KStore
@@ -26,5 +27,9 @@ class CryptoMoneyKStore {
 
     suspend fun getSellers(): List<SellerModel> {
         return getKStoreModel().sellers
+    }
+
+    suspend fun getPurchases(): List<PurchaseModel> {
+        return getKStoreModel().purchases
     }
 }

@@ -7,5 +7,5 @@ data class PurchaseModel(
     val buyerId: Int,
     val sellerId: Int,
     val productId: Int,
-    val price: Int
+    val count: Int
 )

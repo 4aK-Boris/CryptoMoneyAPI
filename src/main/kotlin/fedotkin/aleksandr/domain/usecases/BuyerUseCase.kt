@@ -1,16 +1,13 @@
 package fedotkin.aleksandr.domain.usecases
 
 import fedotkin.aleksandr.data.dto.BuyerDTO
-import fedotkin.aleksandr.data.repositories.BuyerRepositoryImpl
-import fedotkin.aleksandr.domain.kstore.CryptoMoneyKStore
+import fedotkin.aleksandr.domain.repositories.BuyerRepository
 
 class BuyerUseCase(
-    private val cryptoMoneyKStore: CryptoMoneyKStore,
-    private val buyerRepositoryImpl: BuyerRepositoryImpl
+    private val buyerRepository: BuyerRepository
 ) {
 
     suspend fun getBuyers(): List<BuyerDTO> {
-        val buyerModels = cryptoMoneyKStore.getBuyers()
-        return buyerRepositoryImpl.getBuyers(buyerModels = buyerModels)
+        return buyerRepository.getBuyerDTOs(buyerModels = buyerRepository.getBuyerModels())
     }
 }

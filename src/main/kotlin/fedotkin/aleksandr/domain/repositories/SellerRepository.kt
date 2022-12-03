@@ -5,5 +5,7 @@ import fedotkin.aleksandr.domain.models.SellerModel
 
 interface SellerRepository {
 
-    suspend fun getSellers(sellerModels: List<SellerModel>): List<SellerDTO>
+    suspend fun getSellerDTOs(sellerModels: List<SellerModel>): List<SellerDTO>
+
+    suspend fun getSellerModels(): List<SellerModel>
 }

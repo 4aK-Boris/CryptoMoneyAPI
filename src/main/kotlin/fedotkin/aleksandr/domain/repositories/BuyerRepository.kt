@@ -5,5 +5,9 @@ import fedotkin.aleksandr.domain.models.BuyerModel
 
 interface BuyerRepository {
 
-    suspend fun getBuyers(buyerModels: List<BuyerModel>): List<BuyerDTO>
+    suspend fun getBuyerDTOs(buyerModels: List<BuyerModel>): List<BuyerDTO>
+
+    suspend fun getBuyerModels(): List<BuyerModel>
+
+    suspend fun getBuyerNickName(buyerId: Int): String
 }
