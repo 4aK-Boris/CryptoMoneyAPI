@@ -10,4 +10,6 @@ interface BuyerRepository {
     suspend fun getBuyerModels(): List<BuyerModel>
 
     suspend fun getBuyerNickName(buyerId: Int): String
+
+    suspend fun changeMoney(buyerId: Int, money: Int)
 }

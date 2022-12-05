@@ -32,4 +32,40 @@ class CryptoMoneyKStore {
     suspend fun getPurchases(): List<PurchaseModel> {
         return getKStoreModel().purchases
     }
+
+    suspend fun changeMoneyBuyer(buyerId: Int, money: Int) {
+        store.update { kStoreModel ->
+            kStoreModel?.buyers?.find { it.id == buyerId }?.apply {
+                copy(amountOfMoney = this.amountOfMoney - money)
+            }
+            kStoreModel
+        }
+    }
+
+    suspend fun changeCount(productId: Int, count: Int) {
+        store.update { kStoreModel ->
+            kStoreModel?.products?.find { it.id == productId }?.apply {
+                copy(quantity = this.quantity - count)
+            }
+            kStoreModel
+        }
+    }
+
+    suspend fun changeMoneySeller(sellerId: Int, money: Int) {
+        store.update { kStoreModel ->
+            kStoreModel?.sellers?.find { it.id == sellerId }?.apply {
+                copy(amountOfMoney = this.amountOfMoney + money)
+            }
+            kStoreModel
+        }
+    }
+
+    suspend fun savePurchase(purchaseModel: PurchaseModel) {
+        store.update { kStoreModel ->
+            kStoreModel?.purchases.apply {
+                this?.plus(purchaseModel)
+            }
+            kStoreModel
+        }
+    }
 }

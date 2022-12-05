@@ -32,4 +32,11 @@ class ProductRepositoryImpl(
         return getProductModels().first { productModel -> productModel.id == productId }
     }
 
+    override suspend fun changeCount(productId: Int, count: Int) {
+        cryptoMoneyKStore.changeCount(productId = productId, count = count)
+    }
+
+    override suspend fun getProductPrice(productId: Int): Int {
+        return getProductModel(productId = productId).price
+    }
 }

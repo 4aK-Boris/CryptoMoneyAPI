@@ -18,4 +18,8 @@ class SellerRepositoryImpl(
     override suspend fun getSellerModels(): List<SellerModel> {
         return cryptoMoneyKStore.getSellers()
     }
+
+    override suspend fun changeMoney(sellerId: Int, money: Int) {
+        cryptoMoneyKStore.changeMoneySeller(sellerId = sellerId, money = money)
+    }
 }

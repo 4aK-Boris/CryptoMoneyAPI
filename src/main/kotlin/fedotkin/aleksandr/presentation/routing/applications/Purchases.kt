@@ -5,8 +5,10 @@ import fedotkin.aleksandr.domain.usecases.PurchaseUseCase
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
+import io.ktor.server.request.receive
 import io.ktor.server.response.respond
 import io.ktor.server.routing.get
+import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
 import io.ktor.util.reflect.TypeInfo
 import org.koin.ktor.ext.inject
@@ -25,6 +27,11 @@ fun Application.configurePurchases() {
                 message = null,
                 messageType = TypeInfo(type = SellerPurchaseDTO::class, reifiedType = SellerPurchaseDTO::class.java)
             )
+        }
+
+        post("/purchase") {
+            val buyModel = purchasesUseCase.getBuyModel(buyDTO = call.receive())
+            purchasesUseCase.buy(buyModel = buyModel)
         }
     }
 }

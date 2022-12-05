@@ -3,7 +3,7 @@ package fedotkin.aleksandr.data.dto
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class BankCardDTO(
+data class CardDTO(
     val number: String,
     val month: Int,
     val year: Int,

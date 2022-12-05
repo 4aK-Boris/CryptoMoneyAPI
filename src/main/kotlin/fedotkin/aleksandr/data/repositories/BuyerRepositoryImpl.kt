@@ -22,4 +22,8 @@ class BuyerRepositoryImpl(
     override suspend fun getBuyerNickName(buyerId: Int): String {
         return getBuyerModels().first { buyerModel -> buyerModel.id == buyerId }.nickName
     }
+
+    override suspend fun changeMoney(buyerId: Int, money: Int) {
+        cryptoMoneyKStore.changeMoneyBuyer(buyerId = buyerId, money = money)
+    }
 }

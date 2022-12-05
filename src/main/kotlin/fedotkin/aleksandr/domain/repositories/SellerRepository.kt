@@ -8,4 +8,6 @@ interface SellerRepository {
     suspend fun getSellerDTOs(sellerModels: List<SellerModel>): List<SellerDTO>
 
     suspend fun getSellerModels(): List<SellerModel>
+
+    suspend fun changeMoney(sellerId: Int, money: Int)
 }
