@@ -6,6 +6,7 @@ import fedotkin.aleksandr.data.mappers.BuyerMapper
 import fedotkin.aleksandr.data.mappers.ProductMapper
 import fedotkin.aleksandr.data.mappers.PurchaseMapper
 import fedotkin.aleksandr.data.mappers.CardMapper
+import fedotkin.aleksandr.data.mappers.NotificationMapper
 import org.koin.core.module.dsl.factoryOf
 import org.koin.dsl.module
 
@@ -27,4 +28,6 @@ val mapperModule = module {
             cardMapper = get()
         )
     }
+
+    factoryOf(::NotificationMapper)
 }

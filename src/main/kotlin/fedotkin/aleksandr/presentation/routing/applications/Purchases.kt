@@ -1,6 +1,7 @@
 package fedotkin.aleksandr.presentation.routing.applications
 
 import fedotkin.aleksandr.data.dto.SellerPurchaseDTO
+import fedotkin.aleksandr.domain.usecases.NotificationUseCase
 import fedotkin.aleksandr.domain.usecases.PurchaseUseCase
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
@@ -16,6 +17,10 @@ import org.koin.ktor.ext.inject
 fun Application.configurePurchases() {
 
     val purchasesUseCase by inject<PurchaseUseCase>()
+    val notificationUseCase by inject<NotificationUseCase>()
+
+    val apiKeySeller = environment.config.property(path = "onesignal.api_key_seller").getString()
+    val apiKeyBuyer = environment.config.property(path = "onesignal.api_key_buyer").getString()
 
     routing {
         get("/sellerPurchases") {
@@ -32,6 +37,11 @@ fun Application.configurePurchases() {
         post("/purchase") {
             val buyModel = purchasesUseCase.getBuyModel(buyDTO = call.receive())
             purchasesUseCase.buy(buyModel = buyModel)
+            notificationUseCase.sendNotification(
+                productId = buyModel.purchase.productId,
+                apiKeySeller = apiKeySeller,
+                apiKeyBuyer = apiKeyBuyer
+            )
         }
     }
 }
