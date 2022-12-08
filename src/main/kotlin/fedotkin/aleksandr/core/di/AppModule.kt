@@ -1,4 +1,4 @@
-package fedotkin.aleksandr.di
+package fedotkin.aleksandr.core.di
 
 import fedotkin.aleksandr.data.di.mapperModule
 import fedotkin.aleksandr.data.di.networkModule

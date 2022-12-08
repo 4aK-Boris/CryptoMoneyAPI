@@ -1,6 +1,6 @@
 package fedotkin.aleksandr.presentation.plugins
 
-import fedotkin.aleksandr.di.appModule
+import fedotkin.aleksandr.core.di.appModule
 import io.ktor.server.application.Application
 import io.ktor.server.application.install
 import io.ktor.server.application.log

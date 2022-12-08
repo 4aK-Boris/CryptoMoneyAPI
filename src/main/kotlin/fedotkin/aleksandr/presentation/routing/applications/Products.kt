@@ -1,5 +1,6 @@
 package fedotkin.aleksandr.presentation.routing.applications
 
+import fedotkin.aleksandr.core.SELLER_ID
 import fedotkin.aleksandr.data.dto.SellerProductDTO
 import fedotkin.aleksandr.domain.usecases.ProductUseCase
 import io.ktor.http.HttpStatusCode
@@ -22,7 +23,7 @@ fun Application.configureProducts() {
         }
 
         get("/sellerProducts") {
-            call.parameters["sellerId"]?.let { stringId ->
+            call.parameters[SELLER_ID]?.let { stringId ->
                 val sellerId = stringId.toInt()
                 call.respond(productUseCase.getSellerProducts(sellerId = sellerId))
             } ?: call.respond(
