@@ -1,4 +1,4 @@
-package fedotkin.aleksandr.data.di
+package fedotkin.aleksandr.data.core.di
 
 import fedotkin.aleksandr.data.repositories.ProductRepositoryImpl
 import fedotkin.aleksandr.data.repositories.BuyerRepositoryImpl

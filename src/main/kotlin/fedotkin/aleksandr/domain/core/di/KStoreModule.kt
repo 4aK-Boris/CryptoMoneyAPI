@@ -1,4 +1,4 @@
-package fedotkin.aleksandr.domain.di
+package fedotkin.aleksandr.domain.core.di
 
 import fedotkin.aleksandr.data.kstore.CryptoMoneyKStore
 import org.koin.core.module.dsl.singleOf

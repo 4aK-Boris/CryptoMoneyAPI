@@ -1,4 +1,4 @@
-package fedotkin.aleksandr.domain.di
+package fedotkin.aleksandr.domain.core.di
 
 import fedotkin.aleksandr.domain.usecases.BuyerUseCase
 import fedotkin.aleksandr.domain.usecases.ProductUseCase
