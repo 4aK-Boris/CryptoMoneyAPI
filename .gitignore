@@ -23,6 +23,7 @@ bin/
 *.ipr
 out/
 !**/src/main/**/out/
+!**/src/main/resourses/application.conf
 !**/src/test/**/out/
 
 ### NetBeans ###

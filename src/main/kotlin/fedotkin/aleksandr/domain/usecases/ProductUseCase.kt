@@ -1,16 +1,21 @@
 package fedotkin.aleksandr.domain.usecases
 
+import fedotkin.aleksandr.data.dto.SellerProductDTO
 import fedotkin.aleksandr.data.dto.ProductDTO
-import fedotkin.aleksandr.data.repositories.ProductRepositoryImpl
-import fedotkin.aleksandr.domain.kstore.CryptoMoneyKStore
+import fedotkin.aleksandr.domain.repositories.ProductRepository
 
 class ProductUseCase(
-    private val cryptoMoneyKStore: CryptoMoneyKStore,
-    private val productRepositoryImpl: ProductRepositoryImpl
+    private val productRepository: ProductRepository
 ) {
 
     suspend fun getProducts(): List<ProductDTO> {
-        val productModels = cryptoMoneyKStore.getProducts()
-        return productRepositoryImpl.getProducts(productModels = productModels)
+        return productRepository.getProductDTOs(productModels = productRepository.getProductModels())
+    }
+
+    suspend fun getSellerProducts(sellerId: Int): List<SellerProductDTO> {
+        return productRepository.getSellerProductDTOs(
+            sellerId = sellerId,
+            sellerProductModels = productRepository.getProductModels()
+        )
     }
 }

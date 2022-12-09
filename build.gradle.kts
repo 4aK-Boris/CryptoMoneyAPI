@@ -25,11 +25,18 @@ dependencies {
     implementation(Dependencies.Ktor.negotiation)
     implementation(Dependencies.Ktor.serialization)
     implementation(Dependencies.Ktor.netty)
+    implementation(Dependencies.Ktor.websockets)
+
+    implementation(Dependencies.Ktor.clientCore)
+    implementation(Dependencies.Ktor.cio)
+    implementation(Dependencies.Ktor.clientSerialization)
+    implementation(Dependencies.Ktor.clientNegotiation)
+    implementation(Dependencies.Ktor.json)
 
     implementation(Dependencies.Koin.di)
     implementation(Dependencies.Koin.logger)
 
-    implementation(Dependencies.KStore.kstore)
+    implementation(Dependencies.KStore.kStore)
 
     implementation(Dependencies.Logback.classic)
 

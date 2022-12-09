@@ -4,8 +4,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class KStoreModel(
-    val buyers: List<BuyerModel>,
-    val sellers: List<SellerModel>,
-    val products: List<ProductModel>,
-    val purchases: List<PurchaseModel>
+    val buyers: MutableList<BuyerModel>,
+    val sellers: MutableList<SellerModel>,
+    val products: MutableList<ProductModel>,
+    val purchases: MutableList<PurchaseModel>
 )
