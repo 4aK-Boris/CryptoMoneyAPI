@@ -7,5 +7,5 @@ data class BuyerModel(
     val id: Int,
     val nickName: String,
     val imageUrl: String,
-    val amountOfMoney: Int
+    var amountOfMoney: Int
 )

@@ -17,6 +17,7 @@ class NotificationRepositoryImpl(
         val notificationModel = NotificationModel(
             color = COLOR,
             pictureUrl = productModel.imageUrl,
+            androidGroup = sellerGroup,
             title = "У вас был куплен товар",
             text = productModel.title,
             appId = OneSignalService.ONE_SIGNAL_APP_ID_SELLER
@@ -29,7 +30,8 @@ class NotificationRepositoryImpl(
         val notificationModel = NotificationModel(
             color = COLOR,
             pictureUrl = productModel.imageUrl,
-            title = "У вас был куплен товар",
+            androidGroup = buyerGroup,
+            title = "Вы купили товар",
             text = productModel.title,
             appId = OneSignalService.ONE_SIGNAL_APP_ID_BUYER
         )
@@ -38,5 +40,7 @@ class NotificationRepositoryImpl(
 
     companion object {
         private const val COLOR = "FF7AFFFF"
+        private const val buyerGroup = "H6TQMfDJ0iVoRLPa21zA5jpHXwj2tNTG"
+        private const val sellerGroup = "ZeVhk6lmdlsWb8b3cN96Y5MSJWHydhbs"
     }
 }

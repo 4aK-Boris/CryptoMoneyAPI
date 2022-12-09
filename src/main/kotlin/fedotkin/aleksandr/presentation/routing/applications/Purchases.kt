@@ -1,8 +1,11 @@
 package fedotkin.aleksandr.presentation.routing.applications
 
+import fedotkin.aleksandr.core.SELLER_ID
 import fedotkin.aleksandr.data.dto.SellerPurchaseDTO
 import fedotkin.aleksandr.domain.usecases.NotificationUseCase
 import fedotkin.aleksandr.domain.usecases.PurchaseUseCase
+import io.ktor.client.HttpClient
+import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
 import io.ktor.server.application.Application
 import io.ktor.server.application.call
@@ -19,12 +22,14 @@ fun Application.configurePurchases() {
     val purchasesUseCase by inject<PurchaseUseCase>()
     val notificationUseCase by inject<NotificationUseCase>()
 
+    val client by inject<HttpClient>()
+
     val apiKeySeller = environment.config.property(path = "onesignal.api_key_seller").getString()
     val apiKeyBuyer = environment.config.property(path = "onesignal.api_key_buyer").getString()
 
     routing {
         get("/sellerPurchases") {
-            call.parameters["sellerId"]?.let { stringId ->
+            call.parameters[SELLER_ID]?.let { stringId ->
                 val sellerId = stringId.toInt()
                 call.respond(purchasesUseCase.getSellerPurchases(sellerId = sellerId))
             } ?: call.respond(
@@ -42,6 +47,14 @@ fun Application.configurePurchases() {
                 apiKeySeller = apiKeySeller,
                 apiKeyBuyer = apiKeyBuyer
             )
+            call.respond(message = true)
+        }
+
+        get("/check") {
+            client.get("http://127.0.0.1:8081/check")
+            call.respond("OK")
         }
     }
 }
+
+

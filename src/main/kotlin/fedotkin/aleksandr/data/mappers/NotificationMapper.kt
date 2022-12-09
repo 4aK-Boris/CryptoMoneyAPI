@@ -11,8 +11,9 @@ class NotificationMapper {
             androidAccentColor = notificationModel.color,
             bigPicture = notificationModel.pictureUrl,
             includedSegments = listOf("All"),
-            headings = NotificationMessageDTO(ru = notificationModel.title),
-            contents = NotificationMessageDTO(ru = notificationModel.text),
+            androidGroup = notificationModel.androidGroup,
+            headings = NotificationMessageDTO(en = notificationModel.title),
+            contents = NotificationMessageDTO(en = notificationModel.text),
             appId = notificationModel.appId
         )
     }

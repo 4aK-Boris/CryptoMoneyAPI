@@ -10,7 +10,7 @@ object Dependencies {
 
     object Ktor {
 
-        const val version = "2.1.3"
+        const val version = "2.2.1"
 
         const val core = "io.ktor:ktor-server-core-jvm:$version"
         const val callLogging = "io.ktor:ktor-server-call-logging-jvm:$version"
@@ -19,6 +19,7 @@ object Dependencies {
         const val serialization = "io.ktor:ktor-serialization-kotlinx-json-jvm:$version"
         const val netty = "io.ktor:ktor-server-netty-jvm:$version"
         const val json = "io.ktor:ktor-serialization-kotlinx-json:$version"
+        const val websockets = "io.ktor:ktor-server-websockets:$version"
 
         const val clientCore = "io.ktor:ktor-client-core:$version"
         const val cio = "io.ktor:ktor-client-cio:$version"

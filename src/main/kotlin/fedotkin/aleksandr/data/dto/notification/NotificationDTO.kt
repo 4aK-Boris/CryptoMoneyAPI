@@ -9,6 +9,8 @@ data class NotificationDTO(
     val androidAccentColor: String,
     @SerialName("big_picture")
     val bigPicture: String,
+    @SerialName("android_group")
+    val androidGroup: String,
     @SerialName("included_segments")
     val includedSegments: List<String>,
     val contents: NotificationMessageDTO,

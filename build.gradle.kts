@@ -25,6 +25,7 @@ dependencies {
     implementation(Dependencies.Ktor.negotiation)
     implementation(Dependencies.Ktor.serialization)
     implementation(Dependencies.Ktor.netty)
+    implementation(Dependencies.Ktor.websockets)
 
     implementation(Dependencies.Ktor.clientCore)
     implementation(Dependencies.Ktor.cio)

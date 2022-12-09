@@ -35,8 +35,8 @@ class CryptoMoneyKStore {
 
     suspend fun changeMoneyBuyer(buyerId: Int, money: Int) {
         store.update { kStoreModel ->
-            kStoreModel?.buyers?.find { it.id == buyerId }?.apply {
-                copy(amountOfMoney = this.amountOfMoney - money)
+            kStoreModel?.buyers?.indexOfFirst { it.id == buyerId }?.let { index ->
+                kStoreModel.buyers[index].amountOfMoney -= money
             }
             kStoreModel
         }
@@ -44,8 +44,8 @@ class CryptoMoneyKStore {
 
     suspend fun changeCount(productId: Int, count: Int) {
         store.update { kStoreModel ->
-            kStoreModel?.products?.find { it.id == productId }?.apply {
-                copy(quantity = this.quantity - count)
+            kStoreModel?.products?.indexOfFirst { it.id == productId }?.let { index ->
+                kStoreModel.products[index].quantity -= count
             }
             kStoreModel
         }
@@ -53,8 +53,8 @@ class CryptoMoneyKStore {
 
     suspend fun changeMoneySeller(sellerId: Int, money: Int) {
         store.update { kStoreModel ->
-            kStoreModel?.sellers?.find { it.id == sellerId }?.apply {
-                copy(amountOfMoney = this.amountOfMoney + money)
+            kStoreModel?.sellers?.indexOfFirst { it.id == sellerId }?.let { index ->
+                kStoreModel.sellers[index].amountOfMoney += money
             }
             kStoreModel
         }
@@ -62,9 +62,7 @@ class CryptoMoneyKStore {
 
     suspend fun savePurchase(purchaseModel: PurchaseModel) {
         store.update { kStoreModel ->
-            kStoreModel?.purchases.apply {
-                this?.plus(purchaseModel)
-            }
+            kStoreModel?.purchases?.add(purchaseModel)
             kStoreModel
         }
     }
