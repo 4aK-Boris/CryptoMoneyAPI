@@ -9,5 +9,5 @@ import aleksandr.fedotkin.services.di.notificationModule
 import org.koin.dsl.module
 
 val appModule = module {
-    includes(useCaseModule, repositoryModule, mapperModule, kStoreModule, networkModule, notificationModule)
+    includes(useCaseModule, repositoryModule, mapperModule, kStoreModule, networkModule, notificationModule, setMo)
 }
