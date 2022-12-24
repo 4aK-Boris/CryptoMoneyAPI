@@ -3,9 +3,20 @@ object Dependencies {
     object Kotlin {
         const val version = "1.7.22"
         private const val coroutinesVersion = "1.6.4"
+        private const val date_time_version = "0.4.0"
 
         const val jUnit = "org.jetbrains.kotlin:kotlin-test-junit:$version"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:$date_time_version"
+    }
+
+    object BouncyCastle {
+
+        private const val version = "1.72"
+
+        const val bcprov = "org.bouncycastle:bcprov-jdk18on:$version"
+        const val bcpkix = "org.bouncycastle:bcpkix-jdk18on:$version"
+        const val bcutil = "org.bouncycastle:bcutil-jdk18on:$version"
     }
 
     object Ktor {

@@ -1,0 +1,42 @@
+package aleksandr.fedotkin.data.repositories
+
+import aleksandr.fedotkin.data.dto.SellerProductDTO
+import aleksandr.fedotkin.data.dto.ProductDTO
+import aleksandr.fedotkin.data.mappers.ProductMapper
+import aleksandr.fedotkin.data.kstore.CryptoMoneyKStore
+import aleksandr.fedotkin.domain.models.ProductModel
+import aleksandr.fedotkin.domain.repositories.ProductRepository
+
+class ProductRepositoryImpl(
+    private val productMapper: ProductMapper,
+    private val cryptoMoneyKStore: CryptoMoneyKStore
+) : ProductRepository {
+
+    override suspend fun getProductDTOs(productModels: List<ProductModel>): List<ProductDTO> {
+        return productModels.map { productModel -> productMapper.map(productModel = productModel) }
+    }
+
+    override suspend fun getProductModels(): List<ProductModel> {
+        return cryptoMoneyKStore.getProducts()
+    }
+
+    override suspend fun getSellerProductDTOs(
+        sellerId: Int,
+        sellerProductModels: List<ProductModel>
+    ): List<SellerProductDTO> {
+        return sellerProductModels.filter { productModel -> productModel.sellerId == sellerId }
+            .map { productModel -> productMapper.mapSellerProduct(productModel = productModel) }
+    }
+
+    override suspend fun getProductModel(productId: Int): ProductModel {
+        return getProductModels().first { productModel -> productModel.id == productId }
+    }
+
+    override suspend fun changeCount(productId: Int, count: Int) {
+        cryptoMoneyKStore.changeCount(productId = productId, count = count)
+    }
+
+    override suspend fun getProductPrice(productId: Int): Int {
+        return getProductModel(productId = productId).price
+    }
+}

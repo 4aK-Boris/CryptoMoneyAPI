@@ -5,10 +5,10 @@ plugins {
     id(Dependencies.Plugins.serialization) version Dependencies.Kotlin.version
 }
 
-group = "fedotkin.aleksandr"
+group = "aleksandr.fedotkin"
 version = "0.0.1"
 application {
-    mainClass.set("fedotkin.aleksandr.ApplicationKt")
+    mainClass.set("aleksandr.fedotkin.ApplicationKt")
 
     val isDevelopment: Boolean = project.ext.has("development")
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
@@ -41,6 +41,11 @@ dependencies {
     implementation(Dependencies.Logback.classic)
 
     implementation(Dependencies.Kotlin.coroutines)
+    implementation(Dependencies.Kotlin.dateTime)
+
+    implementation(Dependencies.BouncyCastle.bcprov)
+    implementation(Dependencies.BouncyCastle.bcpkix)
+    implementation(Dependencies.BouncyCastle.bcutil)
 
     testImplementation(Dependencies.Ktor.tests)
 
