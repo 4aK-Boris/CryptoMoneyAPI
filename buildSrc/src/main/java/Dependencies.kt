@@ -3,11 +3,12 @@ object Dependencies {
     object Kotlin {
         const val version = "1.7.22"
         private const val coroutinesVersion = "1.6.4"
-        private const val date_time_version = "0.4.0"
+        private const val dateTimeVersion = "0.4.0"
 
         const val jUnit = "org.jetbrains.kotlin:kotlin-test-junit:$version"
         const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
-        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:$date_time_version"
+        const val dateTime = "org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion"
+        const val serialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.4.1"
     }
 
     object BouncyCastle {

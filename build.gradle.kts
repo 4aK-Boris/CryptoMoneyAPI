@@ -47,7 +47,7 @@ dependencies {
     implementation(Dependencies.BouncyCastle.bcpkix)
     implementation(Dependencies.BouncyCastle.bcutil)
 
-    implementation(project(":set_protocol"))
+    implementation(project(":SetProtocol"))
 
     testImplementation(Dependencies.Ktor.tests)
 

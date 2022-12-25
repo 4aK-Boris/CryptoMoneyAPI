@@ -6,8 +6,9 @@ import aleksandr.fedotkin.data.di.repositoryModule
 import aleksandr.fedotkin.domain.di.kStoreModule
 import aleksandr.fedotkin.domain.di.useCaseModule
 import aleksandr.fedotkin.services.di.notificationModule
+import aleksandr.fedotkin.set.protocol.core.di.setModule
 import org.koin.dsl.module
 
 val appModule = module {
-    includes(useCaseModule, repositoryModule, mapperModule, kStoreModule, networkModule, notificationModule, setMo)
+    includes(useCaseModule, repositoryModule, mapperModule, kStoreModule, networkModule, notificationModule, setModule)
 }
