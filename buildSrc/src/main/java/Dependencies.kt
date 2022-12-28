@@ -53,6 +53,7 @@ object Dependencies {
 
         const val di = "io.insert-koin:koin-ktor:$version"
         const val logger = "io.insert-koin:koin-logger-slf4j:$version"
+        const val koinJUnit = "io.insert-koin:koin-test-junit4:$version"
     }
 
     object KStore {

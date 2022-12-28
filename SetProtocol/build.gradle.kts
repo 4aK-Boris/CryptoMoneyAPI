@@ -36,6 +36,7 @@ dependencies {
     implementation(Dependencies.Koin.di)
     implementation(Dependencies.Koin.logger)
 
+
     implementation(Dependencies.KStore.kStore)
 
     implementation(Dependencies.Logback.classic)
@@ -47,9 +48,9 @@ dependencies {
     implementation(Dependencies.BouncyCastle.bcpkix)
     implementation(Dependencies.BouncyCastle.bcutil)
 
-    implementation(project(":SetProtocol"))
-
     testImplementation(Dependencies.Ktor.tests)
 
     testImplementation(Dependencies.Kotlin.jUnit)
+
+    testImplementation(Dependencies.Koin.koinJUnit)
 }
