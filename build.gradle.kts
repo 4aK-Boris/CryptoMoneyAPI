@@ -14,10 +14,6 @@ application {
     applicationDefaultJvmArgs = listOf("-Dio.ktor.development=$isDevelopment")
 }
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation(Dependencies.Ktor.core)
     implementation(Dependencies.Ktor.callLogging)
@@ -41,6 +37,8 @@ dependencies {
     implementation(Dependencies.Logback.classic)
 
     implementation(Dependencies.Kotlin.coroutines)
+
+    implementation(project(Dependencies.Modules.setProtocol))
 
     testImplementation(Dependencies.Ktor.tests)
 
