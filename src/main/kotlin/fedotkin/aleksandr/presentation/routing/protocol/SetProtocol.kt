@@ -7,7 +7,7 @@ import io.ktor.server.application.Application
 import io.ktor.server.application.call
 import io.ktor.server.request.receiveText
 import io.ktor.server.response.respondText
-import io.ktor.server.routing.get
+import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
 import org.koin.ktor.ext.inject
 
@@ -17,7 +17,7 @@ fun Application.configureSetProtocol() {
     val cardCInitResUseCase: CardCInitResServerUseCase by inject()
 
     routing {
-        get(CARD_C_INIT) {
+        post(CARD_C_INIT) {
             cardCInitReqUseCase.sendMessage = { json ->
                 call.respondText(text = json)
             }

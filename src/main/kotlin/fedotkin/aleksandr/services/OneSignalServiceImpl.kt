@@ -1,5 +1,6 @@
 package fedotkin.aleksandr.services
 
+import fedotkin.aleksandr.data.dto.notification.NotificationCodeDTO
 import fedotkin.aleksandr.data.dto.notification.NotificationDTO
 import io.ktor.client.HttpClient
 import io.ktor.client.request.header
@@ -24,4 +25,18 @@ class OneSignalServiceImpl(
                 false
             }
         }
+
+    override suspend fun sendNotificationCode(notificationCodeDTO: NotificationCodeDTO, apiKey: String): Boolean {
+        return try {
+            client.post(urlString = OneSignalService.NOTIFICATIONS) {
+                contentType(ContentType.Application.Json)
+                header("Authorization", "Basic $apiKey")
+                setBody(notificationCodeDTO)
+            }
+            true
+        } catch(e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
 }

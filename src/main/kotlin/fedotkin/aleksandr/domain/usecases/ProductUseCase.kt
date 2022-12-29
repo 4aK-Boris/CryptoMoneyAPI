@@ -12,6 +12,10 @@ class ProductUseCase(
         return productRepository.getProductDTOs(productModels = productRepository.getProductModels())
     }
 
+    suspend fun getProduct(productId: Int): ProductDTO {
+        return productRepository.getProductDTO(productId = productId)
+    }
+
     suspend fun getSellerProducts(sellerId: Int): List<SellerProductDTO> {
         return productRepository.getSellerProductDTOs(
             sellerId = sellerId,

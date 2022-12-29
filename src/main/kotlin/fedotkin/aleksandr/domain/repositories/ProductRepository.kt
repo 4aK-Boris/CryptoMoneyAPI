@@ -12,6 +12,8 @@ interface ProductRepository {
 
     suspend fun getSellerProductDTOs(sellerId: Int, sellerProductModels: List<ProductModel>): List<SellerProductDTO>
 
+    suspend fun getProductDTO(productId: Int): ProductDTO
+
     suspend fun getProductModel(productId: Int): ProductModel
 
     suspend fun changeCount(productId: Int, count: Int)

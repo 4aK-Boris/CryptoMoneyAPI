@@ -1,5 +1,6 @@
 package fedotkin.aleksandr.domain.usecases
 
+import fedotkin.aleksandr.data.dto.notification.NotificationCodeDTO
 import fedotkin.aleksandr.data.dto.notification.NotificationDTO
 import fedotkin.aleksandr.domain.repositories.NotificationRepository
 import fedotkin.aleksandr.services.OneSignalService
@@ -17,6 +18,10 @@ class NotificationUseCase(
         return notificationRepository.getBuyerNotification(productId = productId)
     }
 
+    private suspend fun getNotificationCode(code: Int): NotificationCodeDTO {
+        return notificationRepository.getNotificationCode(code = code)
+    }
+
     private suspend fun sendNotificationSeller(productId: Int, apiKey: String) {
         service.sendNotification(notificationDTO = getSellerNotification(productId = productId), apiKey = apiKey)
     }
@@ -28,5 +33,9 @@ class NotificationUseCase(
     suspend fun sendNotification(productId: Int, apiKeySeller: String, apiKeyBuyer: String) {
         sendNotificationSeller(productId = productId, apiKey = apiKeySeller)
         sendNotificationBuyer(productId = productId, apiKey = apiKeyBuyer)
+    }
+
+    suspend fun sendCode(code: Int, apiKeyBuyer: String) {
+        service.sendNotificationCode(notificationCodeDTO = getNotificationCode(code = code), apiKey = apiKeyBuyer)
     }
 }

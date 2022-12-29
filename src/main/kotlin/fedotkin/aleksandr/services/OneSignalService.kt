@@ -1,10 +1,13 @@
 package fedotkin.aleksandr.services
 
+import fedotkin.aleksandr.data.dto.notification.NotificationCodeDTO
 import fedotkin.aleksandr.data.dto.notification.NotificationDTO
 
 interface OneSignalService {
 
     suspend fun sendNotification(notificationDTO: NotificationDTO, apiKey: String): Boolean
+
+    suspend fun sendNotificationCode(notificationCodeDTO: NotificationCodeDTO, apiKey: String): Boolean
 
     companion object {
         const val NOTIFICATIONS = "https://onesignal.com/api/v1/notifications"

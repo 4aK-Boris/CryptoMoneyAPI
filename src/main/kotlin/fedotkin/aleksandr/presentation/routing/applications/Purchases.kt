@@ -16,6 +16,7 @@ import io.ktor.server.routing.post
 import io.ktor.server.routing.routing
 import io.ktor.util.reflect.TypeInfo
 import org.koin.ktor.ext.inject
+import kotlin.random.Random
 
 fun Application.configurePurchases() {
 
@@ -23,6 +24,8 @@ fun Application.configurePurchases() {
     val notificationUseCase by inject<NotificationUseCase>()
 
     val client by inject<HttpClient>()
+
+    var code: Int = Random.nextInt(from = 100000, until = 999999)
 
     val apiKeySeller = environment.config.property(path = "onesignal.api_key_seller").getString()
     val apiKeyBuyer = environment.config.property(path = "onesignal.api_key_buyer").getString()
@@ -48,6 +51,17 @@ fun Application.configurePurchases() {
                 apiKeyBuyer = apiKeyBuyer
             )
             call.respond(message = true)
+        }
+
+        get("/code") {
+            code = Random.nextInt(from = 100000, until = 999999)
+            notificationUseCase.sendCode(code = code, apiKeyBuyer = apiKeyBuyer)
+            call.respond(true)
+        }
+
+        post ("/checkCode") {
+            val newCode = call.receive<Int>()
+            call.respond(newCode == code)
         }
 
         get("/check") {

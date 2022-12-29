@@ -28,6 +28,10 @@ class ProductRepositoryImpl(
             .map { productModel -> productMapper.mapSellerProduct(productModel = productModel) }
     }
 
+    override suspend fun getProductDTO(productId: Int): ProductDTO {
+        return productMapper.map(productModel = getProductModel(productId = productId))
+    }
+
     override suspend fun getProductModel(productId: Int): ProductModel {
         return getProductModels().first { productModel -> productModel.id == productId }
     }
